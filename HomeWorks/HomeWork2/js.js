@@ -104,6 +104,8 @@ if ('discount' in item) {
 	if (item.discount !== undefined && parseFloat(item.discount) > 0){
 		item.priceWithDiscount = parseFloat(item.price) - (parseFloat(item.price)*parseFloat(item.discount)/100);
 		console.log(item.priceWithDiscount + '$');
+	} else { 
+		console.log(item.price);
 	}
 } else {
 	console.log(item.price);
