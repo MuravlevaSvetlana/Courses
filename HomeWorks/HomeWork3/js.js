@@ -105,21 +105,25 @@ console.log(newStringBack);
 // exc 3
 
 
-
-let n = 10;
-let result = 1;//записала сразу в условии так, как факториал даже нуля равен еденицы
+let n = 7;
+let result;
 let mas = [];
 
-for (let i = 1; i <= n; i++){
-	mas.push(i);//https://learn.javascript.ru/array добавление в массив
-} 
 
-for (let value of mas) {
-	result *= value;
-} 
+	if (n < 0){
+		console.log('Только положительное значение');// факториал отрицательных чисел не считается 
+	} else {
+		for (let i = 1; i <= n; i++){
+			mas.push(i);//https://learn.javascript.ru/array добавление в массив
+		}
+		result = 1;//записала сразу в условии так, как факториал даже нуля равен еденицы
+		for (let value of mas) {
+			result *= value;
+		} 
+
+	} 
 
 console.log(result);
-
 
 
 // exc 4
