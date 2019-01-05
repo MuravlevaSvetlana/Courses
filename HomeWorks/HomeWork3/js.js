@@ -105,7 +105,7 @@ console.log(newStringBack);
 // exc 3
 
 
-let n = 7;
+let n = 10;
 let result;
 let mas = [];
 
@@ -120,10 +120,10 @@ let mas = [];
 		for (let value of mas) {
 			result *= value;
 		} 
-
+		console.log(result);
 	} 
 
-console.log(result);
+
 
 
 // exc 4
