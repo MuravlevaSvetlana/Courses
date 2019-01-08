@@ -157,17 +157,24 @@ let users = [{name:'Denis', age:'29', gender:'male'}, {name:'Ivan', age:'20', ge
 
 
 
-function getGender (key_1, key_2){
+function getGender(key_1 = 'gender', key_2 = 'male') {
 	let out = [];
+
+	if (typeof key_1 !== 'string' || key_1 === '') {
+		key_1 = 'gender' ;
+	};
+
+	if (typeof key_2 !== 'string' || key_2 === '') {
+		key_2 = 'male';
+	};
+
 	for (let i of users){
 		if (i[key_1] === key_2){
 			out.push(i);
-			
-		} else {
-			continue;
-		}
+		} 
 	}
 	console.log(out);
+	return out;
 }
 
-getGender('gender', 'male');
+getGender('gender', 'female');
