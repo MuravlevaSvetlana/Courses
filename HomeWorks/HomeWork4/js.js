@@ -25,7 +25,6 @@ multiply(4,8,10,58);
 
 
 
-
 function reverString(a) {
 	let mas;
 	let reverseString = '';
@@ -75,7 +74,9 @@ function outCode(a){
  outCode('hello');
 
 
+
 // Exc 4
+
 
 
 function guessNumber(a) {
@@ -104,7 +105,9 @@ function guessNumber(a) {
 guessNumber(8);
 
 
+
 // Exc 5
+
 
 
 function getArray(a) {
@@ -120,7 +123,9 @@ function getArray(a) {
 getArray(10);
 
 
+
 // Exc 6
+
 
 
 let arr = [1,2,3];
@@ -134,7 +139,9 @@ function getDoubleArray(a) {
 getDoubleArray(arr);
 
 
+
 // Exc 7
+
 
 
 let array = [[1, 2, 3], ['a', 'b', 'c'], [5,7,8,10,4], ['ava', 'bbb', 'cvg']];
@@ -150,12 +157,12 @@ function changeCollection(arr) {
 changeCollection(array);
 
 
+
 // Exc 8
 
 
+
 let users = [{name:'Denis', age:'29', gender:'male'}, {name:'Ivan', age:'20', gender:'male'}, {name:'Svetlana', age:'24', gender:'female'} ];
-
-
 
 function getGender(key_1 = 'gender', key_2 = 'male') {
 	let out = [];
