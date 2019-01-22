@@ -235,7 +235,6 @@ function editTaskStorage(id, title, text) {
 }
 
 
-
 function setFormtoEdit(id) {
     for (value of todosStorage.currentTodos){
         if (value.id === id) {
@@ -244,7 +243,6 @@ function setFormtoEdit(id) {
             value.setAttribute('data-task-id', id);
         }
     }
-
     let btn_save = document.querySelector('.btn-primary');
     btn_save.innerHTML = 'Save';
 }
