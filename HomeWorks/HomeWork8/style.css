@@ -1,0 +1,11 @@
+.red_btn {
+	background-color: #F13C73;
+}
+
+.d-none {
+  display: none;
+}
+
+.dropdown-item {
+  cursor: pointer;
+}
