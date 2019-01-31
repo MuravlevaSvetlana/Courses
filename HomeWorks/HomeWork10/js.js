@@ -80,44 +80,44 @@ let calculate = (function calculator() {
 	function setNum(value) {
 		if (typeof value !== 'number') console.log('Введите числовое значение');
 		num = parseFloat(value);
-		return calculate;
+		return this;
 	}
 
 	function plusNum(value) {
 		if (typeof value !== 'number') console.log('Введите числовое значение');
 		num += parseFloat(value);
-		return calculate;
+		return this;
 	}
 
 	function multiplyNum(value) {
 		if (typeof value !== 'number') console.log('Введите числовое значение');
 		num *= parseFloat(value);
-		return calculate;
+		return this;
 	}
 
 	function minusNum(value) {
 		if (typeof value !== 'number') console.log('Введите числовое значение');
 		num -= parseFloat(value);
-		return calculate;
+		return this;
 
 	}
 
 	function divisionNum(value){
 		if (typeof value !== 'number') console.log('Введите числовое значение');
 		num /= parseFloat(value);
-		return calculate;
+		return this;
 	}
 
 	function powerNum(value) {
 		if (typeof value !== 'number') console.log('Введите числовое значение');
 		num = Math.pow(num, value);
-		return calculate;
+		return this;
 	}
 
 		function outNum() {
 		num = Math.round(parseFloat(num)*100)/100;
 		console.log(num);
-		return calculate;
+		return this;
 	}
 
 	return {
