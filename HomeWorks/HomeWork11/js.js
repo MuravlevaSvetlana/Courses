@@ -96,29 +96,25 @@ class CustomHttp {
 
 const httpClient = new CustomHttp();
 
-
 httpClient.get('https://jsonplaceholder.typicode.com/todos', (response) => {
-
-    let arr = JSON.parse(response);
-    const ul = document.querySelector('ul');
-
+   
+    	const ul = document.querySelector('ul');
 	function outUser(arr) {
 		return `<li> ${arr.title}<ul class = "disp-none">
 				<li> userId: ${arr.userId}</li>
 				<li> id: ${arr.id}</li>
 				<li> completed: ${arr.completed}</li>
 				</ul>
-		</li>`
+				</li>`
 	}
 
-	function add(arr) {
+	(function add() {
+		let arr = JSON.parse(response);
 		for (let i = 0; i < arr.length; i++){
 			const add = outUser(arr[i]);
 			ul.insertAdjacentHTML('beforeend',add);
-		}
-	}
-
-	add(arr);
+		} return arr;
+	}());
 
 	ul.addEventListener('click', (event) =>{
 		if (event.target.tagName !== 'LI' || event.target.children.length === 0) return;
