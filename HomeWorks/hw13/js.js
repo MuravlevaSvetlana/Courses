@@ -1,8 +1,13 @@
+/**
+     * 
+     * @param {Number} time 
+     * @param {String} value 
+      */
 function promiseGenerate(time, value) {
 	return new Promise ((res) =>{
-		setTimeout(() => {
-        	res(value);
-		}, time);
+	   setTimeout(() => {
+	      res(value);
+	   }, time);
 	});
 };
 
@@ -12,16 +17,16 @@ prom.then(console.log);
 
 class Prom {
 	constructor() {
-    	this.promise = new Promise((res, rej) => {
+    	   this.promise = new Promise((res, rej) => {
     		this.res = res;
     		this.rej = rej;
     	})
 	}
 	res(value) {
-    	this.res(value);
+    	   this.res(value);
   	}
   	rej(value) {
-    	this.rej(value);
+    	   this.rej(value);
   	}
 }
 
