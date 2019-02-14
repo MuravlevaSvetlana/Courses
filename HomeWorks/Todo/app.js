@@ -30,6 +30,7 @@ const table = document.querySelector('.table tbody');
 const title = form.elements['title'];
 const text = form.elements['text'];
 let btn_save = document.querySelector('.btn-primary');
+
 // event handling
 form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -68,6 +69,23 @@ table.addEventListener('click', (event) => {
     }
 });
 
+if (localStorage.length){
+    for (let i = 0; i < localStorage.length; i++){
+        let key = localStorage.key(i);
+        let value = JSON.parse(localStorage.getItem(key));
+        const newTodo = {title:value.title, text:value.text, id:value.id};
+        todosStorage.todos.push(newTodo);
+        addNewTodoToView(newTodo);
+        if (value.important){
+            let tr = document.getElementsByTagName('tr');
+            for (let i = 0; i < tr.length; i++){
+                if (tr[i].dataset.id === value.id){
+                tr[i].style.backgroundColor = '#A9DAF1';
+                }
+            }  
+        }
+    }
+}
 
 // alert messages
 /**
@@ -88,7 +106,6 @@ function removeAlert() {
     const currentAlert = document.querySelector('.alert');
     if (currentAlert) formCol.removeChild(currentAlert);
 }
-
    
 /**
 * generateId - создает произвольную строку 
@@ -111,25 +128,26 @@ function generateId() {
 * addNewTodoToStorage - добавляет новый todo в storage а потом в view
 * @param {String} title 
 * @param {String} text
-* @returns {[]} currentTodos
+* @returns {[]} todosStorage
 */
 function addNewTodoToStorage(title, text) {
     if (!title) return console.log('Please provide todo title');
     if (!text) return console.log('Please provide todo text');
  
-    const newTodo = {title, text, id: generateId()}
+    const newTodo = {title, text, id: generateId(), important:false};
     todosStorage.todos.push(newTodo);
 
     // Добавим в разметку
     addNewTodoToView(newTodo);
-
+    const toLocal = JSON.stringify(newTodo);
+    localStorage.setItem(newTodo.id, toLocal);
     return todosStorage.todos;
  };
 
  /**
 * 
 * @param {String} id 
-* @returns {[]} currentTodos
+* @returns {[]} todosStorage
 */
 function deleteTodoFromStorage(id) {
     const checkIdRes = checkId(id);
@@ -150,7 +168,6 @@ function deleteTodoFromStorage(id) {
     return removedTask;
  }
 
-
 /**
  * 
  * @param {String} id 
@@ -163,7 +180,6 @@ function checkId(id) {
 
     return { error: false, msg: '' };
 }
-
 
 // View functions
 
@@ -219,7 +235,7 @@ function alertTemplate(className, message) {
     `;
 }
 
-addNewTodoToStorage('My title 1', 'My text 1');
+//addNewTodoToStorage('My title 1', 'My text 1');
 
 
 // Make editing work
@@ -231,29 +247,50 @@ addNewTodoToStorage('My title 1', 'My text 1');
  * @param {String} text 
  */
 function editTaskStorage(id, title, text) {
-
-   let tr = document.getElementsByTagName('tr');
-   for (let i = 0; i < tr.length; i++){
+    localStorage.removeItem(id);
+    let tr = document.getElementsByTagName('tr');
+    for (let i = 0; i < tr.length; i++){
         if (tr[i].dataset.id === id){
             tr[i].children[0].innerHTML = title.value;
             tr[i].children[1].innerHTML = text.value;
-         }
-   } return(id,title,text);
+        }
+    }  
+    const newTodo = {title:title.value, text:text.value, id};
+    todosStorage.todos.push(newTodo);
+    addNewTodoToView(newTodo);
+    const toLocal = JSON.stringify(newTodo);
+    localStorage.setItem(newTodo.id, toLocal);
+    return(id,title,text);
 }
 
-
+/**
+ * 
+ * @param {String} id 
+ * @param {String} title 
+ * @param {String} text 
+ */
 function setFormtoEdit(id) {
-    
     title.value = event.target.closest('[data-id]').children[0].innerHTML;
     text.value = event.target.closest('[data-id]').children[1].innerHTML; 
     form.setAttribute('data-task-id', id);
     btn_save.innerHTML = 'Save changes';
-
+    deleteTodoFromStorage(id);
     return (text, title, id);
 }
 
-
+/**
+ * 
+ * @param {String} id 
+ */
 function editImportant(id) {
     event.target.closest('[data-id]').style.backgroundColor = '#A9DAF1';
+    for (let i = 0; i < todosStorage.todos.length; i++) {
+        if (todosStorage.todos[i].id === id) {
+            todosStorage.todos[i].important = true;
+            localStorage.removeItem(id);
+            const toLocal = JSON.stringify(todosStorage.todos[i]);
+            localStorage.setItem(id, toLocal);
+        }
+    }
 }
 
