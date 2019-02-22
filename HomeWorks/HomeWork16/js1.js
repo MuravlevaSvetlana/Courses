@@ -3,10 +3,10 @@ function Build(name, quantity) {
     this.quantity = quantity;
     this.getQuantity = function() {
         console.log(this.quantity);
-        return this.quantity;
+        return this.quantity
     }
     this.setQuantity = function(newQuantity) {
-        return this.quantity = newQuantity;
+        return this.quantity = newQuantity
     }
 }
 
@@ -18,8 +18,8 @@ function LiveBuild(name, quantity, flats) {
             stores: this.quantity,
             allFlats: this.quantity * this.flats
         }
-        console.log(obj)
-        return obj;
+        console.log(obj);
+        return obj
     }
 }
 LiveBuild.prototype = Object.create(Build.prototype);
@@ -34,7 +34,7 @@ function Market(name, quantity, shops) {
             allShops: this.quantity * this.shops
         }
         console.log(obj);
-        return obj;
+        return obj
     }
 }
 Market.prototype = Object.create(Build.prototype);
@@ -56,11 +56,11 @@ class Build2 {
 
     getQuantity() {
         console.log(this.quantity);
-        return this.quantity;  
+        return this.quantity  
     }
 
     setQuantity(newQuantity) {
-        return this.quantity = newQuantity; 
+        return this.quantity = newQuantity 
     }
 }
 
@@ -75,8 +75,8 @@ class LiveBuild2 extends Build2 {
             stores: this.quantity,
             allFlats: this.quantity * this.flats
         }
-        console.log(obj)
-        return obj;
+        console.log(obj);
+        return obj
     }
 }
 
@@ -92,12 +92,10 @@ class Market2 extends Build2 {
             allShops: this.quantity * this.shops
         }
         console.log(obj);
-        return obj;
+        return obj
     }
 }
 
 const build2 = new Build2('palace', 2);
 const liveBuild2 = new LiveBuild2('flat', 5, 3);
 const market2 = new Market2 ('market', 3, 10);
-
-
